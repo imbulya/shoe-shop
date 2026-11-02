@@ -17,7 +17,7 @@ class ProductItemWidget(QWidget):
 
         self.discount = self.product.get("discount", 0)
         self.has_discount = self.discount > 0
-        self.has_high_discount = self.discount > HIGH_DISCOUNT_THRESHOLD
+        self.is_high_discount = self.discount > HIGH_DISCOUNT_THRESHOLD
         self.quantity = self.product.get("quantity", 0)
         self.is_out_of_stock = self.quantity == 0
 
@@ -31,7 +31,7 @@ class ProductItemWidget(QWidget):
         card.setObjectName("card_frame")
 
         card_style = "background: white;"
-        if self.has_high_discount:
+        if self.is_high_discount:
             card_style = "background: #2E8B57;"
         elif self.is_out_of_stock:
             card_style = "background: #ADD8E6;"
