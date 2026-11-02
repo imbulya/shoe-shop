@@ -3,6 +3,8 @@ from PySide6.QtGui import QFont, QPixmap, QCursor, QPainter, QPen
 from PySide6.QtCore import Qt, Signal
 import os
 
+HIGH_DISCOUNT_THRESHOLD = 15
+
 
 class ProductItemWidget(QWidget):
     clicked = Signal()
@@ -15,7 +17,7 @@ class ProductItemWidget(QWidget):
 
         self.discount = self.product.get("discount", 0)
         self.has_discount = self.discount > 0
-        self.has_high_discount = self.discount > 15
+        self.has_high_discount = self.discount > HIGH_DISCOUNT_THRESHOLD
         self.quantity = self.product.get("quantity", 0)
         self.is_out_of_stock = self.quantity == 0
 
