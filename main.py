@@ -87,7 +87,7 @@ class MainWindow:
         if db.connection is None:
             QMessageBox.critical(None, "Ошибка",
                                  "Не удалось подключиться к базе данных!\n"
-                                 "Проверьте настройки подключения в файле config.ini")
+                                 "Проверьте настройки подключения в файле config.ini\n(образец: config.ini.example)")
             sys.exit(1)
 
         link_photos_to_products()
