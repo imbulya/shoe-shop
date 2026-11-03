@@ -134,7 +134,7 @@ class MainWindow:
             else:
                 QMessageBox.warning(None, "Ошибка", "Неизвестная роль пользователя")
         else:
-            QMessageBox.warning(None, "Ошибка", "Неверный логин или пароль")
+            QMessageBox.warning(None, "Ошибка", "Неверный логин или пароль. Проверьте раскладку клавиатуры и Caps Lock")
 
     def handle_guest_login(self):
         self.products_storage = db.get_all_products()
