@@ -45,3 +45,20 @@
 - `warehouses` — пункты выдачи заказов;
 - `orders`, `order_items` — заказы и состав заказов;
 - `stock_levels` — остатки товаров по складам.
+
+## Запуск PostgreSQL через Docker Compose
+
+Требования: Docker Desktop (Linux containers) с Docker Compose v2.
+
+1. Скопировать `.env.example` в `.env` и заменить `POSTGRES_PASSWORD` на свой локальный пароль (файл `.env` в Git не попадает).
+2. Запустить сервисы: `docker compose up --build -d`
+3. Проверить состояние: `docker compose ps` (db — healthy, db-check — Exited (0) после проверки).
+4. Импортировать базу (из корня проекта):
+   `docker compose cp sql/shoes_shop.sql db:/tmp/shoes_shop.sql`
+   `docker compose exec db psql -v ON_ERROR_STOP=1 -U postgres -d shoes_shop -f /tmp/shoes_shop.sql`
+5. Проверить таблицы: `docker compose run --rm db-check` (ожидается «OK: база=shoes_shop; таблиц=7»).
+6. В `config.ini` указать `host = localhost`, `port = 5433`, `name = shoes_shop`, `user = postgres` и пароль из `.env`.
+7. Запустить приложение: `python main.py`
+8. Остановить: `docker compose stop`, снова запустить: `docker compose start`. Команду `docker compose down -v` не использовать: она удаляет данные.
+
+Адреса: приложение на Windows подключается к `localhost:5433`, сервис db-check внутри Compose — к `db:5432`.
