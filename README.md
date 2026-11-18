@@ -81,3 +81,12 @@
 Адреса: приложение на Windows подключается к `localhost:5433` (порт открыт только на 127.0.0.1), db-check внутри сети Compose — к `db:5432`.
 
 Внимание: команда `docker compose down -v` удаляет том с данными и в этом проекте не используется.
+
+## Сборка Windows-приложения
+
+Сборка выполняется на Windows (Python 3.10+, PyInstaller, режим onedir):
+`.venv\Scripts\python.exe -m PyInstaller --noconfirm --clean ShoeStore.spec`
+Результат: папка `dist/ShoeStore/` (ShoeStore.exe и сопутствующие файлы). Переносить нужно всю папку.
+Рядом с ShoeStore.exe размещается `config.ini` (образец — `config.ini.example`); пароль в EXE не встраивается.
+Файл `paths.py` определяет пути: ресурсы берутся из упакованной папки `resources`, конфигурация — из папки с EXE.
+База данных запускается отдельно через Docker Compose (см. INSTALL.md); EXE подключается к `127.0.0.1:5433`.

@@ -1,12 +1,12 @@
 import psycopg2
 from psycopg2.extras import DictCursor
 from typing import List, Dict, Any, Optional, Tuple
+from paths import app_dir
 import configparser
 import os
 import sys
 
-CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.ini")
-
+CONFIG_PATH = os.path.join(app_dir(), "config.ini")
 
 def read_config():
     config = configparser.ConfigParser()

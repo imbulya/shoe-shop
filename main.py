@@ -3,7 +3,8 @@ import os
 from PySide6.QtWidgets import QApplication, QStackedWidget, QMessageBox
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt, QTimer
-
+from paths import resource_dir
+os.chdir(resource_dir())
 try:
     from ui.login_page import LoginPage
     from ui.admin_page import AdminPage
