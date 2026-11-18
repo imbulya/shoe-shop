@@ -22,3 +22,7 @@ config.ini
 
 # Системные файлы macOS
 .DS_Store
+backups/
+
+*.zip
+ShoeStore-release/
